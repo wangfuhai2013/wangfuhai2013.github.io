@@ -9,7 +9,7 @@
   <meta name="author" content="phil">
 
   
-  <meta name="description" content="决定开始写博客，好好整理一下技术经验。现在大家都用github的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。 注册github账号，并建立博客网站的仓库 在(https://github.com/signup/free)申请好github账号后，建一个名为 USERNAME. &hellip;">
+  <meta name="description" content="决定开始写博客，好好整理一下技术经验。现在大家都用github的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。 先安装ruby 注册github账号，并建立博客网站的仓库 在(https://github.com/signup/free)申请好github账号后，建一个名为 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,6 +104,8 @@
 
 
 <div class="entry-content"><p>决定开始写博客，好好整理一下技术经验。现在大家都用github的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。</p>
+
+<h3>先安装ruby</h3>
 
 <h3>注册github账号，并建立博客网站的仓库</h3>
 
@@ -205,6 +207,60 @@ $ git push origin master
 <hr />
 
 <h1>换用octopress</h1>
+
+<p>octopress是基于Jekyll的博客生成工具，页面风格比Jekyll更好丰富，即开即用，不用自己做更多定制工作。于是从Jekyll换成octopress.</p>
+
+<h3>octopress安装</h3>
+
+<p>先从github把octopress的代码库clone下来</p>
+
+<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
+$ cd octopress/
+</code></pre>
+
+<p>修改<code>Gemfile</code>文件,将gem文件源改为淘宝建立镜像源</p>
+
+<pre><code>source "http://ruby.taobao.org"
+</code></pre>
+
+<p>然后进行安装</p>
+
+<pre><code>$ bundle install
+$ rake install
+</code></pre>
+
+<h3>octopress的使用</h3>
+
+<p>修改<code>_config.yml</code>的博客相关配置信息，注释掉twitter相关配置(墙内无用），然后创建文章，并修改其内容</p>
+
+<pre><code>$ rake new_post['install blog on github']
+$ vi source/_posts/2013-05-17-install-blog-on-github.markdown 
+</code></pre>
+
+<p>生成静态文件，然后进行预览</p>
+
+<pre><code>$ rake generate
+$ rake preview
+</code></pre>
+
+<p>将<code>CNAME</code>文件放放source目录，最后设置好github Pages的个人代码库地址，进行发布</p>
+
+<pre><code>$ rake set_github_pages
+$ rake deploy
+</code></pre>
+
+<h3>octopress及网站源文件</h3>
+
+<p>octopress发布网站内容不像Jekyll将所源文件都上传的github上，而只是将生成的静态文件上传到github上。
+对于octopress本身和网站的源文件，可以另建代码库进行维护，如在github新建一个名为octopress的代码库，然后进行上传</p>
+
+<pre><code>$ git add .
+$ git commit -m "initial commit"
+$ git remote set-url origin git@github.com:wangfuhai2013/octopress.git
+$ git push origin source
+</code></pre>
+
+<p>注octopress在本地安装的是source分支，不是master分支，所以push的目对象是source</p>
 
 <h3>参考资料</h3>
 
