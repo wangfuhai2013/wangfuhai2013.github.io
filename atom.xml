@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Phil的技术博客]]></title>
+  <link href="http://wangfuhai2013.github.io/atom.xml" rel="self"/>
+  <link href="http://wangfuhai2013.github.io/"/>
+  <updated>2013-05-17T17:50:46+08:00</updated>
+  <id>http://wangfuhai2013.github.io/</id>
+  <author>
+    <name><![CDATA[phil]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[第一次在github上搭建博客]]></title>
+    <link href="http://wangfuhai2013.github.io/blog/2013/05/17/install-blog-on-github/"/>
+    <updated>2013-05-17T17:34:00+08:00</updated>
+    <id>http://wangfuhai2013.github.io/blog/2013/05/17/install-blog-on-github</id>
+    <content type="html"><![CDATA[<p>决定开始写博客，好好整理一下技术经验。现在大家都用github的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。</p>
+
+<h3>注册github账号，并建立博客网站的仓库</h3>
+
+<p>在(<a href="https://github.com/signup/free">https://github.com/signup/free</a>)申请好github账号后，建一个名为 USERNAME.github.com 的代码仓库.USERNAME即账号名，实际操作即进行相应替换，如wangfuhai2013(下同)。</p>
+
+<p>我是通过github的官方的客户端程序建立的代码仓库(repository)，本地代码仓库存放目录为/opt/data/github</p>
+
+<h3>在本地安装Jekyll，并推送到github</h3>
+
+<pre><code>$ cd /opt/data/github 
+$ git clone https://github.com/plusjade/jekyll-bootstrap.git USERNAME.github.com 
+$ cd USERNAME.github.com 
+$ git remote set-url origin git@github.com:USERNAME/USERNAME.github.com.git 
+$ git push origin master
+</code></pre>
+
+<p>push前，可先删除jekyll-bootstrap中的示例内容</p>
+
+<pre><code>$ rm -rf _posts/core-samples
+</code></pre>
+
+<h3>配置Jekyll</h3>
+
+<p>在<code>_config.yml</code>中修改博客名称、作者名、email地址信息</p>
+
+<pre><code>$ cd USERNAME.github.com 
+$ vi _config.yml 
+</code></pre>
+
+<h3>创建文章，修改文章内容</h3>
+
+<pre><code>$ rake post title="first install blog"
+$ vi _posts/2013-05-14-first-install-blog.md
+</code></pre>
+
+<p>修改后，生成实际页面，看一下有没有什么错误</p>
+
+<pre><code>$ jekyll build
+</code></pre>
+
+<h3>修改首页及其他页面</h3>
+
+<p>首页是一个页面，直接修改相应的md文件</p>
+
+<pre><code>$ vi index.md
+</code></pre>
+
+<p>jekyll中创建页面的命令跟文章不一样</p>
+
+<pre><code>$rake page name="about.md"
+</code></pre>
+
+<h3>发布博客</h3>
+
+<p>先在本地运行jekyll，通过localhost:4000地址预览一下效果</p>
+
+<pre><code>$ jekyll serve
+</code></pre>
+
+<p>再push到github上</p>
+
+<pre><code>$ git add -u
+$ git commit -m 'create a new post'
+$ git push origin master
+</code></pre>
+
+<h3>使用自己的域名</h3>
+
+<ol>
+<li>在自己的域名解析中加一条CNAME记录，指向github的域名(USERNAME.github.com)</li>
+<li>在网站根目录下加一个文件CNAME,写入自己的域名，如:blog.chinaework.com</li>
+<li>修改<code>_config.yml</code>中的production_url设置，设为自己的域名地址</li>
+</ol>
+
+
+<h3>更换markdown解释器</h3>
+
+<p>jekyll默认是用Maruku做markdown的解释器，但Maruku是ruby写的，效率较低，可以换成用c写的RDiscount，效率更好
+先安装RDiscount</p>
+
+<pre><code>$ gem install rdiscount
+</code></pre>
+
+<p>再修改<code>_config.yml</code>文件，增加一行地：</p>
+
+<pre><code>markdown: rdiscount
+</code></pre>
+
+<p>但RDiscount在build过程中，不会报告markdown的语法错误，而Maruku会清楚文件内容中的语言错误。</p>
+
+<h3>配置评论功能</h3>
+
+<p>在<a href="https://disqus.com/admin/signup/">disqus</a>注册账号后，修改<code>_config.yml</code>中的short_name设置</p>
+
+<h3>配置google analytics</h3>
+
+<p>在<a href="https://www.google.com/analytics">googel analytics</a>中增加媒体资源后，修改<code>_config.yml</code>中的tracking_id设置</p>
+
+<h3>参考资料</h3>
+
+<ul>
+<li><a href="http://jekyllbootstrap.com/">jekyllbootstrap</a></li>
+<li><a href="http://jekyllrb.com/">jekyll官网</a></li>
+<li><a href="http://joelmccracken.github.io/entries/octopress-is-pretty-sweet/">octopress-is-pretty-sweet</a></li>
+<li><a href="http://www.yangzhiping.com/tech/wordpress-to-jekyll.html">告别wordpress，拥抱jekyll</a></li>
+<li><a href="http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/">octopress安装</a></li>
+<li><a href="http://www.multunus.com/2012/10/our-experience-with-jekyll-and-octopress">jekyll与octopress的比较</a></li>
+<li><a href="http://https://github.com/mojombo/jekyll/wiki/sites">jekll网站例子</a></li>
+<li><a href="http://daringfireball.net/projects/markdown/syntax">markdown语法</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
