@@ -4,7 +4,7 @@
   <title><![CDATA[Phil的技术博客]]></title>
   <link href="http://wangfuhai2013.github.io/atom.xml" rel="self"/>
   <link href="http://wangfuhai2013.github.io/"/>
-  <updated>2013-05-17T23:45:25+08:00</updated>
+  <updated>2013-05-17T23:54:56+08:00</updated>
   <id>http://wangfuhai2013.github.io/</id>
   <author>
     <name><![CDATA[phil]]></name>
@@ -23,7 +23,7 @@
 <h3>安装rvm和ruby</h3>
 
 <p>GitHub官方提供的博客网站建设工具Jekyll是用ruby写的，所以先在本地安装ruby。rvm是管理ruby安装的工具。
-先安装和设置rvm</p>
+先安装和设置rvm:</p>
 
 <pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
 echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile
@@ -57,7 +57,7 @@ $ git push origin master
 <pre><code>$ rm -rf _posts/core-samples
 </code></pre>
 
-<h3>配置Jekyll</h3>
+<h3>配置和使用Jekyll</h3>
 
 <p>在<code>_config.yml</code>中修改博客名称、作者名、email地址等信息：</p>
 
@@ -65,7 +65,7 @@ $ git push origin master
 $ vi _config.yml 
 </code></pre>
 
-<h3>创建文章，修改文章内容</h3>
+<p>创建文章，修改文章内容：</p>
 
 <pre><code>$ rake post title="first install blog"
 $ vi _posts/2013-05-14-first-install-blog.md
@@ -76,9 +76,7 @@ $ vi _posts/2013-05-14-first-install-blog.md
 <pre><code>$ jekyll build
 </code></pre>
 
-<h3>修改首页及其他页面</h3>
-
-<p>首页是一个页面，直接修改相应的md文件：</p>
+<p>修改首页，首页是一个页面，直接修改相应的md文件：</p>
 
 <pre><code>$ vi index.md
 </code></pre>
@@ -105,9 +103,9 @@ $ git push origin master
 <h3>使用自己的域名</h3>
 
 <ol>
-<li>在自己的域名解析中加一条CNAME记录，指向GitHub的域名(USERNAME.github.com)</li>
-<li>在网站根目录下加一个文件CNAME,写入自己的域名，如:blog.chinaework.com</li>
-<li>修改<code>_config.yml</code>中的production_url设置，设为自己的域名地址</li>
+<li> 在自己的域名解析中加一条CNAME记录，指向GitHub的域名(USERNAME.github.com)。</li>
+<li> 在网站根目录下加一个文件CNAME,写入自己的域名，如:blog.chinaework.com。</li>
+<li> 修改<code>_config.yml</code>中的production_url设置，设为自己的域名地址。</li>
 </ol>
 
 
@@ -134,7 +132,7 @@ $ git push origin master
 
 <p>在<a href="https://www.google.com/analytics">googel analytics</a>中增加媒体资源后，修改<code>_config.yml</code>中的tracking_id设置。</p>
 
-<p>&ndash;</p>
+<hr />
 
 <h1>换用octopress</h1>
 
