@@ -4,7 +4,7 @@
   <title><![CDATA[Phil的技术博客]]></title>
   <link href="http://wangfuhai2013.github.io/atom.xml" rel="self"/>
   <link href="http://wangfuhai2013.github.io/"/>
-  <updated>2013-05-17T17:50:46+08:00</updated>
+  <updated>2013-05-17T18:26:41+08:00</updated>
   <id>http://wangfuhai2013.github.io/</id>
   <author>
     <name><![CDATA[phil]]></name>
@@ -116,6 +116,10 @@ $ git push origin master
 <h3>配置google analytics</h3>
 
 <p>在<a href="https://www.google.com/analytics">googel analytics</a>中增加媒体资源后，修改<code>_config.yml</code>中的tracking_id设置</p>
+
+<hr />
+
+<h1>换用octopress</h1>
 
 <h3>参考资料</h3>
 
