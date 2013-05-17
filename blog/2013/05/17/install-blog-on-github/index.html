@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>第一次在github上搭建博客 - Phil的技术博客</title>
+  <title>第一次在GitHub上搭建博客 - Phil的技术博客</title>
   <meta name="author" content="phil">
 
   
-  <meta name="description" content="决定开始写博客，好好整理一下技术经验。现在大家都用github的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。 先安装ruby 注册github账号，并建立博客网站的仓库 在(https://github.com/signup/free)申请好github账号后，建一个名为 &hellip;">
+  <meta name="description" content="决定开始写博客，好好整理一下技术经验。现在大家都用GitHub的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。 安装rvm和ruby GitHub官方提供的博客网站建设工具Jekyll是用ruby写的，所以先在本地安装ruby。rvm是管理ruby安装的工具。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">第一次在github上搭建博客</h1>
+      <h1 class="entry-title">第一次在GitHub上搭建博客</h1>
     
     
       <p class="meta">
@@ -103,17 +103,32 @@
   </header>
 
 
-<div class="entry-content"><p>决定开始写博客，好好整理一下技术经验。现在大家都用github的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。</p>
+<div class="entry-content"><p>决定开始写博客，好好整理一下技术经验。现在大家都用GitHub的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。</p>
 
-<h3>先安装ruby</h3>
+<h3>安装rvm和ruby</h3>
 
-<h3>注册github账号，并建立博客网站的仓库</h3>
+<p>GitHub官方提供的博客网站建设工具Jekyll是用ruby写的，所以先在本地安装ruby。rvm是管理ruby安装的工具。
+先安装和设置rvm</p>
 
-<p>在(<a href="https://github.com/signup/free">https://github.com/signup/free</a>)申请好github账号后，建一个名为 USERNAME.github.com 的代码仓库.USERNAME即账号名，实际操作即进行相应替换，如wangfuhai2013(下同)。</p>
+<pre><code>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile
+source ~/.bash_profile
+</code></pre>
 
-<p>我是通过github的官方的客户端程序建立的代码仓库(repository)，本地代码仓库存放目录为/opt/data/github</p>
+<p>再安装ruby</p>
 
-<h3>在本地安装Jekyll，并推送到github</h3>
+<pre><code>vm install 1.9.2 &amp;&amp; rvm use 1.9.2
+rvm rubygems latest
+</code></pre>
+
+<h3>注册GitHub账号，并建立用于博客网站的代码仓库(repository)</h3>
+
+<p>在(<a href="https://github.com/signup/free">https://github.com/signup/free</a>)申请好GitHub账号后，建一个名为<code>USERNAME.github.com</code>的代码仓库<code>USERNAME</code>即账号名，实际操作即进行相应替换，如:<code>wangfuhai2013</code>(下同)。
+(GitHub现在推荐使用USERNAME.github.io,但USERNAME.github.com也同时可以使用)</p>
+
+<h3>在本地安装Jekyll，并推送到GitHub</h3>
+
+<p>第一次我是通过GitHub的官方的客户端程序建立的代码仓库，本地代码仓库存放目录为/opt/data/github，安装过程如下：</p>
 
 <pre><code>$ cd /opt/data/github 
 $ git clone https://github.com/plusjade/jekyll-bootstrap.git USERNAME.github.com 
@@ -122,14 +137,14 @@ $ git remote set-url origin git@github.com:USERNAME/USERNAME.github.com.git
 $ git push origin master
 </code></pre>
 
-<p>push前，可先删除jekyll-bootstrap中的示例内容</p>
+<p>push前，可先删除jekyll-bootstrap中的示例内容：</p>
 
 <pre><code>$ rm -rf _posts/core-samples
 </code></pre>
 
 <h3>配置Jekyll</h3>
 
-<p>在<code>_config.yml</code>中修改博客名称、作者名、email地址信息</p>
+<p>在<code>_config.yml</code>中修改博客名称、作者名、email地址等信息：</p>
 
 <pre><code>$ cd USERNAME.github.com 
 $ vi _config.yml 
@@ -141,31 +156,31 @@ $ vi _config.yml
 $ vi _posts/2013-05-14-first-install-blog.md
 </code></pre>
 
-<p>修改后，生成实际页面，看一下有没有什么错误</p>
+<p>修改后，生成实际页面，看一下有没有什么错误：</p>
 
 <pre><code>$ jekyll build
 </code></pre>
 
 <h3>修改首页及其他页面</h3>
 
-<p>首页是一个页面，直接修改相应的md文件</p>
+<p>首页是一个页面，直接修改相应的md文件：</p>
 
 <pre><code>$ vi index.md
 </code></pre>
 
-<p>jekyll中创建页面的命令跟文章不一样</p>
+<p>jekyll中创建页面的命令跟文章不一样：</p>
 
 <pre><code>$rake page name="about.md"
 </code></pre>
 
 <h3>发布博客</h3>
 
-<p>先在本地运行jekyll，通过localhost:4000地址预览一下效果</p>
+<p>先在本地运行Jekyll服务，通过localhost:4000地址预览一下效果：</p>
 
 <pre><code>$ jekyll serve
 </code></pre>
 
-<p>再push到github上</p>
+<p>再push到github上：</p>
 
 <pre><code>$ git add -u
 $ git commit -m 'create a new post'
@@ -175,7 +190,7 @@ $ git push origin master
 <h3>使用自己的域名</h3>
 
 <ol>
-<li>在自己的域名解析中加一条CNAME记录，指向github的域名(USERNAME.github.com)</li>
+<li>在自己的域名解析中加一条CNAME记录，指向GitHub的域名(USERNAME.github.com)</li>
 <li>在网站根目录下加一个文件CNAME,写入自己的域名，如:blog.chinaework.com</li>
 <li>修改<code>_config.yml</code>中的production_url设置，设为自己的域名地址</li>
 </ol>
@@ -183,13 +198,13 @@ $ git push origin master
 
 <h3>更换markdown解释器</h3>
 
-<p>jekyll默认是用Maruku做markdown的解释器，但Maruku是ruby写的，效率较低，可以换成用c写的RDiscount，效率更好
-先安装RDiscount</p>
+<p>jekyll默认是用Maruku做markdown的解释器，但Maruku是ruby写的，效率较低，可以换成用c写的RDiscount，效率更好。
+先安装RDiscount：</p>
 
 <pre><code>$ gem install rdiscount
 </code></pre>
 
-<p>再修改<code>_config.yml</code>文件，增加一行地：</p>
+<p>再修改<code>_config.yml</code>文件，增加一行：</p>
 
 <pre><code>markdown: rdiscount
 </code></pre>
@@ -198,32 +213,32 @@ $ git push origin master
 
 <h3>配置评论功能</h3>
 
-<p>在<a href="https://disqus.com/admin/signup/">disqus</a>注册账号后，修改<code>_config.yml</code>中的short_name设置</p>
+<p>在<a href="https://disqus.com/admin/signup/">disqus</a>注册账号后，修改<code>_config.yml</code>中的short_name设置。</p>
 
 <h3>配置google analytics</h3>
 
-<p>在<a href="https://www.google.com/analytics">googel analytics</a>中增加媒体资源后，修改<code>_config.yml</code>中的tracking_id设置</p>
+<p>在<a href="https://www.google.com/analytics">googel analytics</a>中增加媒体资源后，修改<code>_config.yml</code>中的tracking_id设置。</p>
 
-<hr />
+<p>&ndash;</p>
 
 <h1>换用octopress</h1>
 
-<p>octopress是基于Jekyll的博客生成工具，页面风格比Jekyll更好丰富，即开即用，不用自己做更多定制工作。于是从Jekyll换成octopress.</p>
+<p>octopress是基于Jekyll的博客生成工具，页面风格比Jekyll更好更丰富，并且即开即用，不用自己做更多定制工作。于是从Jekyll换成octopress。</p>
 
 <h3>octopress安装</h3>
 
-<p>先从github把octopress的代码库clone下来</p>
+<p>先从GitHub把octopress的代码库clone下来：</p>
 
 <pre><code>$ git clone git://github.com/imathis/octopress.git octopress
 $ cd octopress/
 </code></pre>
 
-<p>修改<code>Gemfile</code>文件,将gem文件源改为淘宝建立镜像源</p>
+<p>修改<code>Gemfile</code>文件，将gem文件源改为淘宝建立镜像源，这样下载gem包会快很多：</p>
 
 <pre><code>source "http://ruby.taobao.org"
 </code></pre>
 
-<p>然后进行安装</p>
+<p>然后进行安装：</p>
 
 <pre><code>$ bundle install
 $ rake install
@@ -231,19 +246,19 @@ $ rake install
 
 <h3>octopress的使用</h3>
 
-<p>修改<code>_config.yml</code>的博客相关配置信息，注释掉twitter相关配置(墙内无用），然后创建文章，并修改其内容</p>
+<p>修改<code>_config.yml</code>的博客相关配置信息，注释掉twitter相关配置(墙内无用），然后创建文章，并修改其内容：</p>
 
 <pre><code>$ rake new_post['install blog on github']
 $ vi source/_posts/2013-05-17-install-blog-on-github.markdown 
 </code></pre>
 
-<p>生成静态文件，然后进行预览</p>
+<p>生成静态文件，然后进行预览：</p>
 
 <pre><code>$ rake generate
 $ rake preview
 </code></pre>
 
-<p>将<code>CNAME</code>文件放放source目录，最后设置好github Pages的个人代码库地址，进行发布</p>
+<p>将<code>CNAME</code>文件放放source目录，最后设置好github Pages的个人代码库地址，进行发布：</p>
 
 <pre><code>$ rake set_github_pages
 $ rake deploy
@@ -252,7 +267,7 @@ $ rake deploy
 <h3>octopress及网站源文件</h3>
 
 <p>octopress发布网站内容不像Jekyll将所源文件都上传的github上，而只是将生成的静态文件上传到github上。
-对于octopress本身和网站的源文件，可以另建代码库进行维护，如在github新建一个名为octopress的代码库，然后进行上传</p>
+对于octopress本身和网站的源文件，可以另建代码库进行维护，如在github新建一个名为octopress的代码库，然后进行上传：</p>
 
 <pre><code>$ git add .
 $ git commit -m "initial commit"
@@ -260,7 +275,7 @@ $ git remote set-url origin git@github.com:wangfuhai2013/octopress.git
 $ git push origin source
 </code></pre>
 
-<p>注octopress在本地安装的是source分支，不是master分支，所以push的目对象是source</p>
+<p>注octopress在本地安装的是source分支，不是master分支，所以push的目对象是source。</p>
 
 <h3>参考资料</h3>
 
@@ -326,7 +341,7 @@ $ git push origin source
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/17/install-blog-on-github/">第一次在github上搭建博客</a>
+        <a href="/blog/2013/05/17/install-blog-on-github/">第一次在GitHub上搭建博客</a>
       </li>
     
   </ul>
