@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Phil的技术博客]]></title>
-  <link href="http://wangfuhai2013.github.io/atom.xml" rel="self"/>
-  <link href="http://wangfuhai2013.github.io/"/>
-  <updated>2013-05-18T00:01:10+08:00</updated>
-  <id>http://wangfuhai2013.github.io/</id>
+  <link href="http://blog.chinaework.com/atom.xml" rel="self"/>
+  <link href="http://blog.chinaework.com/"/>
+  <updated>2013-05-19T10:19:55+08:00</updated>
+  <id>http://blog.chinaework.com/</id>
   <author>
     <name><![CDATA[phil]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[第一次在GitHub上搭建博客]]></title>
-    <link href="http://wangfuhai2013.github.io/blog/2013/05/17/install-blog-on-github/"/>
+    <link href="http://blog.chinaework.com/blog/2013/05/17/install-blog-on-github/"/>
     <updated>2013-05-17T17:34:00+08:00</updated>
-    <id>http://wangfuhai2013.github.io/blog/2013/05/17/install-blog-on-github</id>
+    <id>http://blog.chinaework.com/blog/2013/05/17/install-blog-on-github</id>
     <content type="html"><![CDATA[<p>决定开始写博客，好好整理一下技术经验。现在大家都用GitHub的Pages服务部署静态页面做博客，第一篇博客就记录一下搭建的过程。</p>
 
 <h3>安装rvm和ruby</h3>
@@ -171,7 +171,7 @@ $ vi source/_posts/2013-05-17-install-blog-on-github.markdown
 $ rake preview
 </code></pre>
 
-<p>将<code>CNAME</code>文件放放source目录，最后设置好github Pages的个人代码库地址，进行发布：</p>
+<p>将<code>CNAME</code>文件放放source目录，最后设置好GitHub Pages的个人代码库地址，进行发布：</p>
 
 <pre><code>$ rake set_github_pages
 $ rake deploy
